@@ -959,95 +959,267 @@ section{
 
 }
 
-/* =====================================================
-   PROJECTS
-===================================================== */
+/*=========================================
+PROYECTOS
+=========================================*/
 
 .projects{
 
     padding:120px 0;
 
-    background:white;
+    background:
+    radial-gradient(circle at top left,
+    rgba(200,176,232,.16),
+    transparent 35%),
+    linear-gradient(180deg,
+    var(--white-purple),
+    #ffffff);
 
 }
 
-.projects-grid{
+.projects-carousel{
 
-    display:grid;
+    display:flex;
 
-    grid-template-columns:
-    repeat(auto-fit,minmax(320px,1fr));
+    align-items:center;
 
-    gap:2rem;
+    justify-content:center;
 
-    margin-top:4rem;
+    gap:30px;
+
+    margin-top:70px;
+
+    position:relative;
 
 }
 
-.project-card{
+.carousel-track{
 
-    background:white;
+    flex:1;
 
-    border-radius:28px;
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    gap:30px;
 
     overflow:hidden;
 
-    border:1px solid var(--border);
+}
+
+
+/*=========================================
+TARJETAS
+=========================================*/
+
+.project-card{
+
+    position:relative;
+
+    display:flex;
+
+    flex-direction:column;
+
+    overflow:hidden;
+
+    border-radius:24px;
+
+    background:rgba(255,255,255,.92);
+
+    backdrop-filter:blur(18px);
+
+    border:1px solid rgba(141,108,169,.18);
+
+    color:var(--text);
 
     box-shadow:var(--shadow-soft);
 
-    transition:.4s;
+    transition:
+        transform .55s ease,
+        opacity .55s ease,
+        width .55s ease,
+        filter .55s ease,
+        box-shadow .55s ease,
+        background .55s ease;
+
+}
+    
+.project-card.slide-left{
+
+    transform:translateX(-120px);
+    opacity:0;
 
 }
 
-.project-card:hover{
+.project-card.slide-right{
 
-    transform:
-    translateY(-10px);
+    transform:translateX(120px);
+    opacity:0;
+
+}
+
+
+
+/*=========================================
+TARJETA PRINCIPAL
+=========================================*/
+
+.project-card.center{
+
+    width:760px;
+
+    opacity:1;
+
+    transform:scale(1);
+
+    z-index:3;
 
     box-shadow:
-    var(--shadow-large);
 
-    border-color:
-    var(--violet);
+    0 0 25px rgba(168,85,247,.18),
+
+    0 0 80px rgba(91,33,182,.18);
 
 }
 
-.project-card img{
+
+/* brillo */
+
+.project-card.center::before{
+
+    content:"";
+
+    position:absolute;
+
+    inset:-80px;
+
+    background:
+
+    radial-gradient(circle,
+
+    rgba(168,85,247,.18),
+
+    transparent 70%);
+
+    z-index:-1;
+
+}
+
+
+/*=========================================
+TARJETAS LATERALES
+=========================================*/
+
+.project-card.left,
+
+.project-card.right{
+
+    width:240px;
+
+    opacity:.45;
+
+    transform:scale(.82);
+
+    cursor:pointer;
+
+    filter:blur(.5px);
+
+}
+
+.project-card.left{
+
+    transform:
+
+    perspective(1000px)
+
+    rotateY(18deg)
+
+    scale(.82);
+
+}
+
+.project-card.right{
+
+    transform:
+
+    perspective(1000px)
+
+    rotateY(-18deg)
+
+    scale(.82);
+
+}
+
+
+/*=========================================
+IMAGEN
+=========================================*/
+
+.project-image{
 
     width:100%;
 
-    height:230px;
+    height:300px;
 
-    object-fit:cover;
+    overflow:hidden;
 
 }
 
+.project-image img{
+
+    width:100%;
+
+    height:100%;
+
+    object-fit:cover;
+
+    transition:.5s;
+
+}
+
+.project-card.center:hover img{
+
+    transform:scale(1.08);
+
+}
+
+
+/*=========================================
+CONTENIDO
+=========================================*/
+
 .project-info{
 
-    padding:1.8rem;
+    padding:30px;
 
 }
 
 .project-info h3{
 
-    font-size:1.4rem;
+    font-size:2rem;
 
-    margin-bottom:1rem;
+    margin-bottom:18px;
 
-    color:var(--text);
+    color:white;
 
 }
 
 .project-info p{
 
-    color:var(--text-soft);
+    color:#cfcfcf;
 
-    line-height:1.7;
+    line-height:1.8;
 
-    margin-bottom:1.5rem;
+    margin-bottom:25px;
 
 }
+
+
+/*=========================================
+TECNOLOGIAS
+=========================================*/
 
 .project-tech{
 
@@ -1055,56 +1227,154 @@ section{
 
     flex-wrap:wrap;
 
-    gap:.7rem;
+    gap:12px;
 
-    margin-bottom:1.5rem;
+    margin-bottom:30px;
 
 }
 
 .project-tech span{
 
-    background:var(--white-purple);
+    padding:8px 18px;
 
-    color:var(--purple);
+    border-radius:50px;
 
-    padding:.6rem 1rem;
+    background:rgba(139,92,246,.12);
 
-    border-radius:999px;
+    border:1px solid rgba(168,85,247,.35);
+
+    color:#d8b4fe;
 
     font-size:.85rem;
 
-    font-weight:600;
-
 }
 
-.project-info a{
+
+/*=========================================
+BOTON
+=========================================*/
+
+.project-actions a{
 
     display:inline-flex;
 
     align-items:center;
 
-    gap:.5rem;
+    gap:10px;
+
+    padding:14px 24px;
+
+    border-radius:12px;
 
     text-decoration:none;
 
     color:white;
 
-    background:var(--purple);
-
-    padding:.9rem 1.3rem;
-
-    border-radius:12px;
-
     font-weight:600;
 
-    transition:.3s;
+    background:
+
+    linear-gradient(
+
+    135deg,
+
+    #8b5cf6,
+
+    #6d28d9
+
+    );
+
+    transition:.35s;
+
+    box-shadow:
+
+    0 0 20px rgba(139,92,246,.35);
 
 }
 
-.project-info a:hover{
+.project-actions a:hover{
+
+    transform:translateY(-4px);
+
+    box-shadow:
+
+    0 0 35px rgba(168,85,247,.6);
+
+}
+
+
+/*=========================================
+FLECHAS
+=========================================*/
+
+.carousel-btn{
+
+    width:60px;
+
+    height:60px;
+
+    border:none;
+
+    border-radius:50%;
 
     background:
-    var(--purple-dark);
+
+    rgba(25,25,40,.85);
+
+    border:1px solid rgba(168,85,247,.25);
+
+    color:white;
+
+    cursor:pointer;
+
+    font-size:1.2rem;
+
+    transition:.35s;
+
+}
+
+.carousel-btn:hover{
+
+    transform:scale(1.1);
+
+    background:
+
+    linear-gradient(
+
+    135deg,
+
+    #8b5cf6,
+
+    #6d28d9
+
+    );
+
+    box-shadow:
+
+    0 0 30px rgba(168,85,247,.6);
+
+}
+
+
+/*=========================================
+RESPONSIVE
+=========================================*/
+
+@media(max-width:1100px){
+
+    .project-card.left,
+
+    .project-card.right{
+
+        display:none;
+
+    }
+
+    .project-card.center{
+
+        width:100%;
+
+    }
 
 }
 
@@ -1738,6 +2008,474 @@ FORMULARIO
 
 }
 
+/*=========================================
+PROYECTOS
+=========================================*/
+
+.projects{
+
+    padding:140px 0;
+
+    background:
+    radial-gradient(circle at top left,
+    rgba(143,104,184,.12),
+    transparent 38%),
+
+    radial-gradient(circle at bottom right,
+    rgba(196,181,253,.18),
+    transparent 35%),
+
+    linear-gradient(
+    180deg,
+    #ffffff,
+    #faf8ff);
+
+}
+
+.projects .section-description{
+
+    max-width:760px;
+
+    margin:20px auto 0;
+
+}
+
+
+/*=========================================
+CARRUSEL
+=========================================*/
+
+.projects-carousel{
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    gap:45px;
+
+    margin-top:70px;
+
+    position:relative;
+
+}
+
+.carousel-track{
+
+    flex:1;
+
+    max-width:1250px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    gap:35px;
+
+    overflow:hidden;
+
+}
+
+
+/*=========================================
+TARJETAS
+=========================================*/
+
+.project-card{
+
+    background:rgba(255,255,255,.88);
+
+    backdrop-filter:blur(18px);
+
+    border-radius:28px;
+
+    overflow:hidden;
+
+    border:1px solid #ece6fb;
+
+    box-shadow:
+
+    0 20px 45px rgba(120,90,180,.08);
+
+    transition:
+
+    transform .45s ease,
+
+    opacity .45s ease,
+
+    box-shadow .45s ease,
+
+    width .45s ease;
+
+}
+
+
+/*=========================================
+PROYECTO PRINCIPAL
+=========================================*/
+
+.project-card.center{
+
+    width:760px;
+
+    transform:scale(1);
+
+    opacity:1;
+
+    z-index:5;
+
+}
+
+.project-card.center:hover{
+
+    transform:translateY(-6px);
+
+    box-shadow:
+
+    0 35px 70px rgba(120,90,180,.18);
+
+}
+
+
+/*=========================================
+LATERALES
+=========================================*/
+
+.project-card.left,
+
+.project-card.right{
+
+    width:240px;
+
+    opacity:.65;
+
+    cursor:pointer;
+
+}
+
+.project-card.left{
+
+    transform:
+
+    perspective(1200px)
+
+    rotateY(18deg)
+
+    scale(.90);
+
+}
+
+.project-card.right{
+
+    transform:
+
+    perspective(1200px)
+
+    rotateY(-18deg)
+
+    scale(.90);
+
+}
+
+.project-card.left:hover,
+
+.project-card.right:hover{
+
+    opacity:.9;
+
+}
+
+
+/*=========================================
+IMAGEN
+=========================================*/
+
+.project-image{
+
+    width:100%;
+
+    height:320px;
+
+    overflow:hidden;
+
+    background:#f7f4fc;
+
+}
+
+.project-image img{
+
+    width:100%;
+
+    height:100%;
+
+    object-fit:cover;
+
+    transition:.45s;
+
+}
+
+.project-card.center:hover img{
+
+    transform:scale(1.05);
+
+}
+
+
+/*=========================================
+CONTENIDO
+=========================================*/
+
+.project-info{
+
+    padding:30px;
+
+}
+
+.project-card.left .project-info,
+
+.project-card.right .project-info{
+
+    padding:22px;
+
+    text-align:center;
+
+}
+
+.project-info h3{
+
+    color:#5d4389;
+
+    font-size:2rem;
+
+    font-weight:700;
+
+    margin-bottom:18px;
+
+    line-height:1.2;
+
+}
+
+.project-card.left h3,
+
+.project-card.right h3{
+
+    font-size:1.2rem;
+
+    margin-bottom:0;
+
+}
+
+.project-info p{
+
+    color:#666;
+
+    line-height:1.9;
+
+    margin-bottom:28px;
+
+}
+
+
+/*=========================================
+TECNOLOGIAS
+=========================================*/
+
+.project-tech{
+
+    display:flex;
+
+    flex-wrap:wrap;
+
+    gap:12px;
+
+    margin-bottom:32px;
+
+}
+
+.project-tech span{
+
+    padding:9px 18px;
+
+    border-radius:50px;
+
+    background:#f7f2fd;
+
+    color:#7252b0;
+
+    border:1px solid #ddd0f8;
+
+    font-size:.85rem;
+
+    font-weight:600;
+
+}
+
+
+/*=========================================
+BOTON
+=========================================*/
+
+.project-actions a{
+
+    display:inline-flex;
+
+    align-items:center;
+
+    gap:12px;
+
+    padding:15px 26px;
+
+    border-radius:14px;
+
+    text-decoration:none;
+
+    color:white;
+
+    background:
+
+    linear-gradient(
+
+    135deg,
+
+    #8f68b8,
+
+    #7252b0);
+
+    transition:.35s;
+
+    box-shadow:
+
+    0 15px 35px rgba(114,82,176,.22);
+
+}
+
+.project-actions a:hover{
+
+    transform:translateY(-4px);
+
+    box-shadow:
+
+    0 20px 45px rgba(114,82,176,.32);
+
+}
+
+
+/*=========================================
+FLECHAS
+=========================================*/
+
+.carousel-btn{
+
+    width:62px;
+
+    height:62px;
+
+    border:none;
+
+    border-radius:50%;
+
+    background:white;
+
+    border:1px solid #ece6fb;
+
+    color:#7252b0;
+
+    cursor:pointer;
+
+    font-size:1.2rem;
+
+    transition:.35s;
+
+    box-shadow:
+
+    0 12px 30px rgba(120,90,180,.08);
+
+}
+
+.carousel-btn:hover{
+
+    transform:translateY(-4px);
+
+    background:#faf6ff;
+
+    border-color:#b896df;
+
+    box-shadow:
+
+    0 18px 35px rgba(120,90,180,.16);
+
+}
+
+
+/*=========================================
+RESPONSIVE
+=========================================*/
+
+@media(max-width:1100px){
+
+    .projects-carousel{
+
+        gap:20px;
+
+    }
+
+    .project-card.left,
+
+    .project-card.right{
+
+        display:none;
+
+    }
+
+    .project-card.center{
+
+        width:100%;
+
+        max-width:780px;
+
+    }
+
+}
+
+@media(max-width:768px){
+
+    .projects{
+
+        padding:90px 0;
+
+    }
+
+    .project-image{
+
+        height:240px;
+
+    }
+
+    .project-info{
+
+        padding:24px;
+
+    }
+
+    .project-info h3{
+
+        font-size:1.7rem;
+
+    }
+
+    .carousel-btn{
+
+        width:50px;
+
+        height:50px;
+
+    }
+
+}
+
 /*=============================
 RESPONSIVE
 =============================*/
@@ -1776,6 +2514,53 @@ margin:auto;
 
 }
 
+.projects .section-subtitle{
+
+    display:block;
+
+    text-align:center;
+
+    color:#8f68b8;
+
+    font-size:.95rem;
+
+    font-weight:700;
+
+    letter-spacing:4px;
+
+    margin-bottom:18px;
+
+}
+
+.projects .section-title{
+
+    text-align:center;
+
+    color:#2d2d2d;
+
+    font-size:3.2rem;
+
+    font-weight:700;
+
+    margin-bottom:25px;
+
+}
+
+.projects .section-description{
+
+    text-align:center;
+
+    color:#6d6d6d;
+
+    max-width:760px;
+
+    margin:0 auto 70px;
+
+    line-height:1.9;
+
+    font-size:1.05rem;
+
+}
 
 /*=========================================
 FOOTER
@@ -1932,5 +2717,22 @@ RESPONSIVE
     transform:translateY(-8px);
 
 }
+
+}
+
+
+.project-active{
+
+    transition:
+    opacity .35s ease,
+    transform .35s ease;
+
+}
+
+.project-card.project-changing{
+
+    opacity:0;
+
+    pointer-events:none;
 
 }

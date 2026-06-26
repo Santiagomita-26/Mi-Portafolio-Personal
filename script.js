@@ -260,3 +260,183 @@ window.addEventListener("mouseleave", () => {
         "rotateY(0deg) rotateX(0deg)";
 
 });
+
+
+/*=========================================
+PROYECTOS
+=========================================*/
+
+const projects = [
+
+    {
+        title: "Patitas Felices",
+        image: "imgs/patitas.png",
+        description: "Plataforma desarrollada para facilitar la adopción de animales rescatados mediante un sistema intuitivo de publicaciones y administración. El proyecto incluye autenticación, panel administrativo, gestión de mascotas y un diseño completamente responsive pensado para mejorar la experiencia del usuario.",
+        tech: [
+            "HTML",
+            "CSS",
+            "JavaScript",
+            "Python",
+            "SQLite"
+        ],
+        github: "#"
+    },
+
+    {
+        title: "Rutas Seguras Kids",
+        image: "imgs/rutas.png",
+        description: "Aplicación web orientada a optimizar la logística del transporte escolar mediante la planificación dinámica de rutas y seguimiento de estudiantes.",
+        tech: [
+            "HTML",
+            "CSS",
+            "JavaScript"
+        ],
+        github: "#"
+    },
+
+    {
+        title: "CampusVerse",
+        image: "imgs/campusverse.png",
+        description: "Landing Page desarrollada para presentar una experiencia tecnológica moderna con un diseño atractivo y completamente responsive.",
+        tech: [
+            "HTML",
+            "CSS",
+            "JavaScript"
+        ],
+        github: "#"
+    }
+
+];
+
+let currentProject = 0;
+
+
+/*=========================================
+ELEMENTOS
+=========================================*/
+
+const leftCard = document.querySelector(".project-card.left");
+const centerCard = document.querySelector(".project-card.center");
+const rightCard = document.querySelector(".project-card.right");
+
+const prevBtn = document.querySelector(".prev");
+const nextBtn = document.querySelector(".next");
+
+
+/*=========================================
+LLENAR TARJETA LATERAL
+=========================================*/
+
+function fillSideCard(card, project){
+
+    card.querySelector("img").src = project.image;
+    card.querySelector("img").alt = project.title;
+
+    card.querySelector("h3").textContent = project.title;
+
+}
+
+
+/*=========================================
+LLENAR TARJETA PRINCIPAL
+=========================================*/
+
+function fillCenterCard(project){
+
+    centerCard.querySelector("img").src = project.image;
+    centerCard.querySelector("img").alt = project.title;
+
+    centerCard.querySelector("h3").textContent = project.title;
+
+    centerCard.querySelector("p").textContent = project.description;
+
+    const techContainer = centerCard.querySelector(".project-tech");
+
+    techContainer.innerHTML = "";
+
+    project.tech.forEach(tech=>{
+
+        const span = document.createElement("span");
+
+        span.textContent = tech;
+
+        techContainer.appendChild(span);
+
+    });
+
+    centerCard
+        .querySelector(".project-actions a")
+        .href = project.github;
+
+}
+
+
+/*=========================================
+RENDER
+=========================================*/
+
+function renderProjects(){
+
+    const leftIndex =
+        (currentProject - 1 + projects.length) % projects.length;
+
+    const rightIndex =
+        (currentProject + 1) % projects.length;
+
+    fillSideCard(
+        leftCard,
+        projects[leftIndex]
+    );
+
+    fillCenterCard(
+        projects[currentProject]
+    );
+
+    fillSideCard(
+        rightCard,
+        projects[rightIndex]
+    );
+
+}
+
+
+/*=========================================
+BOTONES
+=========================================*/
+
+nextBtn.addEventListener("click",()=>{
+
+    currentProject++;
+
+    if(currentProject >= projects.length){
+
+        currentProject = 0;
+
+    }
+
+    renderProjects();
+
+});
+
+
+
+prevBtn.addEventListener("click",()=>{
+
+    currentProject--;
+
+    if(currentProject < 0){
+
+        currentProject = projects.length - 1;
+
+    }
+
+    renderProjects();
+
+});
+
+
+/*=========================================
+INICIO
+=========================================*/
+
+renderProjects();
