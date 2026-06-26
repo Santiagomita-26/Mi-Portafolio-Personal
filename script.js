@@ -226,42 +226,6 @@ window.addEventListener("load", () => {
 
 });
 
-// =========================================
-// EFECTO PARALLAX SUAVE HERO
-// =========================================
-
-const heroCard =
-    document.querySelector(".hero-card");
-
-window.addEventListener("mousemove", (e) => {
-
-    if (!heroCard) return;
-
-    const x =
-        (window.innerWidth / 2 - e.clientX) / 40;
-
-    const y =
-        (window.innerHeight / 2 - e.clientY) / 40;
-
-    heroCard.style.transform =
-        `rotateY(${x}deg) rotateX(${-y}deg)`;
-
-});
-
-// =========================================
-// RESETEAR PARALLAX
-// =========================================
-
-window.addEventListener("mouseleave", () => {
-
-    if (!heroCard) return;
-
-    heroCard.style.transform =
-        "rotateY(0deg) rotateX(0deg)";
-
-});
-
-
 /*=========================================
 PROYECTOS
 =========================================*/
@@ -270,22 +234,20 @@ const projects = [
 
     {
         title: "Patitas Felices",
-        image: "imgs/patitas.png",
-        description: "Plataforma desarrollada para facilitar la adopción de animales rescatados mediante un sistema intuitivo de publicaciones y administración. El proyecto incluye autenticación, panel administrativo, gestión de mascotas y un diseño completamente responsive pensado para mejorar la experiencia del usuario.",
+        image: "imgs/proyecto2.jpeg",
+        description: "Patitas Felices es una fundación dedicada a rescatar y proteger animales en situación de abandono. Nuestro sitio web fue desarrollado para dar visibilidad a nuestra labor y conectar a animales rescatados con personas dispuestas a brindarles el hogar que merecen, ya sea a través de la adopción, el voluntariado o las donaciones.",
         tech: [
             "HTML",
             "CSS",
-            "JavaScript",
-            "Python",
-            "SQLite"
+            
         ],
-        github: "#"
+        github: "https://github.com/dv1563927-star/Patitas-Felices"
     },
 
     {
         title: "Rutas Seguras Kids",
-        image: "imgs/rutas.png",
-        description: "Aplicación web orientada a optimizar la logística del transporte escolar mediante la planificación dinámica de rutas y seguimiento de estudiantes.",
+        image: "imgs/proyecto3.jpeg",
+        description: "Rutas Seguras Kids es una aplicación frontend desarrollada con JavaScript Vanilla, HTML y CSS que gestiona de forma dinámica la logística de rutas escolares y estudiantes. Destaca por el uso de Web Components nativos, manipulación avanzada del DOM y el consumo asíncrono de APIs externas para mostrar alertas climáticas en tiempo real, todo construido sin frameworks para garantizar un código limpio y eficiente.",
         tech: [
             "HTML",
             "CSS",
@@ -295,15 +257,14 @@ const projects = [
     },
 
     {
-        title: "CampusVerse",
-        image: "imgs/campusverse.png",
-        description: "Landing Page desarrollada para presentar una experiencia tecnológica moderna con un diseño atractivo y completamente responsive.",
+        title: "Herramientas fix",
+        image: "imgs/proyecto1.jpeg",
+        description: "Un pequeño programa que se encarga de llevar el control de prestamos en una comunidad existiendo un perfi de usuario tanto como de administrador para llevar todos los registros , llevando una permanencia de datos en archivos .json emulando una base de datos .",
         tech: [
-            "HTML",
-            "CSS",
-            "JavaScript"
+            "Python",
+            
         ],
-        github: "#"
+        github: "https://github.com/Santiagomita-26/Proyecto-Python"
     }
 
 ];
@@ -404,6 +365,24 @@ function renderProjects(){
 BOTONES
 =========================================*/
 
+function transitionProjects() {
+
+    const carouselTrack = document.querySelector(".carousel-track");
+
+    carouselTrack.style.opacity = "0";
+
+    carouselTrack.style.transition = "opacity .3s ease";
+
+    setTimeout(() => {
+
+        renderProjects();
+
+        carouselTrack.style.opacity = "1";
+
+    }, 150);
+
+}
+
 nextBtn.addEventListener("click",()=>{
 
     currentProject++;
@@ -414,7 +393,7 @@ nextBtn.addEventListener("click",()=>{
 
     }
 
-    renderProjects();
+    transitionProjects();
 
 });
 
@@ -430,7 +409,7 @@ prevBtn.addEventListener("click",()=>{
 
     }
 
-    renderProjects();
+    transitionProjects();
 
 });
 
