@@ -1569,7 +1569,22 @@ RESPONSIVE
 
     .hero-text h1{
 
-        font-size:4rem;
+        font-size:3.6rem;
+
+    }
+
+    .hero-card,
+    .about-card{
+
+        max-width:340px;
+        margin:auto;
+
+    }
+
+    .project-card.center{
+
+        width:100%;
+        max-width:700px;
 
     }
 
@@ -1735,13 +1750,24 @@ RESPONSIVE
         text-align:center;
     }
 
+    .hero-image{
+        max-width:360px;
+        margin:auto;
+    }
+
     .hero-image::before{
-        width:300px;
-        height:300px;
+        width:260px;
+        height:260px;
     }
 
     .hero-card{
-        max-width:100%;
+        max-width:360px;
+        margin:auto;
+    }
+
+    .about-card{
+        max-width:360px;
+        margin:auto;
     }
 
     .about-content h2{
@@ -1774,7 +1800,8 @@ RESPONSIVE
 
     .skill-card{
 
-        min-width:180px;
+        min-width:auto;
+        width:100%;
         padding:1.2rem 1.8rem;
 
     }
@@ -1802,7 +1829,8 @@ RESPONSIVE
 
     .project-card.center{
         width:100%;
-        max-width:600px;
+        max-width:520px;
+        margin:auto;
     }
 
     .project-image{
@@ -1925,6 +1953,20 @@ RESPONSIVE
 
 }
 
+    @media (hover: none) {
+        .skill-card:hover,
+        .project-card.center:hover,
+        .project-card.left:hover,
+        .project-card.right:hover,
+        .contact-links a:hover,
+        .btn-primary:hover,
+        .btn-secondary:hover,
+        .footer-emilia:hover {
+            transform: none;
+            box-shadow: var(--shadow-soft);
+        }
+    }
+
 }
 
 @media(max-width:600px){
@@ -1982,11 +2024,27 @@ RESPONSIVE
         font-size:0.95rem;
     }
 
+    .hero-image{
+        max-width:320px;
+        margin:auto;
+    }
+
     .hero-image::before{
-        width:250px;
-        height:250px;
+        width:240px;
+        height:240px;
         top:-100px;
         right:-100px;
+    }
+
+    .hero-card,
+    .about-card{
+        max-width:320px;
+        margin:auto;
+    }
+
+    .project-card.center{
+        max-width:450px;
+        margin:auto;
     }
 
     .about-content h2{
