@@ -253,7 +253,7 @@ const projects = [
             "CSS",
             "JavaScript"
         ],
-        github: "#"
+        github: "https://github.com/Santiagomita-26/Proyecto-JavaScript"
     },
 
     {
